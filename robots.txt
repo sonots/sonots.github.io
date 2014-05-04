@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://sonots.github.io/sitemap.xml 

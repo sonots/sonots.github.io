@@ -1,99 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>sonots:blog</title>
-  <meta name="author" content="Naotoshi Seo">
-
-  
-  <meta name="description" content="In this article, I exaplain how to use Norikra to count HTTP status with Fluentd.
-Previously, it was common to use fluent-plugin-datacounter for the &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://sonots.github.io">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="sonots:blog" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">sonots:blog</a></h1>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:sonots.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[sonots:blog]]></title>
+  <link href="http://sonots.github.io/atom.xml" rel="self"/>
+  <link href="http://sonots.github.io/"/>
+  <updated>2014-05-04T22:16:56+09:00</updated>
+  <id>http://sonots.github.io/</id>
+  <author>
+    <name><![CDATA[Naotoshi Seo]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/04/how-to-use-norikra-to-count-http-status/">How to Use Norikra to Count HTTP Status With Fluentd</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2014-05-04T20:13:07+09:00" pubdate data-updated="true">May 4<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In this article, I exaplain how to use Norikra to count HTTP status with Fluentd.
+  <entry>
+    <title type="html"><![CDATA[How to Use Norikra to Count HTTP Status With Fluentd]]></title>
+    <link href="http://sonots.github.io/blog/2014/05/04/how-to-use-norikra-to-count-http-status/"/>
+    <updated>2014-05-04T20:13:07+09:00</updated>
+    <id>http://sonots.github.io/blog/2014/05/04/how-to-use-norikra-to-count-http-status</id>
+    <content type="html"><![CDATA[<p>In this article, I exaplain how to use Norikra to count HTTP status with Fluentd.
 Previously, it was common to use <a href="https://github.com/tagomoris/fluent-plugin-datacounter">fluent-plugin-datacounter</a> for the purpose, but,
 today I will explain how to achieve the same feature with <a href="http://norikra.github.io/">Norikra</a>.</p>
 
@@ -436,68 +361,7 @@ Here, we set <code>tag query_name</code> so that the tag of retrieved messages t
 <h2>Conclusion</h2>
 
 <p>I explained how to replace fluent-plguin-datacounter with Norikra. Try it out!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/04/how-to-use-norikra-to-count-http-status/">How to Use Norikra to Count HTTP Status With Fluentd</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Naotoshi Seo -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>

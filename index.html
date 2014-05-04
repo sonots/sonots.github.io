@@ -145,7 +145,7 @@ but in the case of Norikra, it does not require to restart for adding or removin
 
 <h3>Configuration</h3>
 
-<p>The status code counting can be achived with the following configuration using fluent-plugin-datacounter.</p>
+<p>The status code counting can be achieved with the following configuration using fluent-plugin-datacounter.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -220,8 +220,8 @@ but in the case of Norikra, it does not require to restart for adding or removin
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">status_count.visualizer.api_restful.hosts.host</span><span class="mi">001</span><span class="err">:</span>
-</span><span class='line'><span class="p">{</span><span class="nt">&quot;2xx_count&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="nt">&quot;3xx_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;400_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;4xx_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;503_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;5xx_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">status_count</span><span class="p">.</span><span class="nx">visualizer</span><span class="p">.</span><span class="nx">api_restful</span><span class="p">.</span><span class="nx">hosts</span><span class="p">.</span><span class="nx">host001</span><span class="o">:</span>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;2xx_count&quot;</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;3xx_count&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;400_count&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;4xx_count&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;503_count&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;5xx_count&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -230,7 +230,7 @@ but in the case of Norikra, it does not require to restart for adding or removin
 <h2>Data Counting using Norikra</h2>
 
 <p>Referring the <a href="http://norikra.github.io/">document</a> of Norikra, and README of <a href="https://github.com/norikra/fluent-plugin-norikra">fluent-plugin-norikra</a>,
-we will try to replace fluent-plugin-datacounter with out_norikra, Norikra Query (accurately, EPL of Esper), in_norikra.</p>
+we will try to replace fluent-plugin-datacounter with out_norikra, Norikra Query (accurately, EPL of Esper), and in_norikra.</p>
 
 <p><strong>in_norikra</strong></p>
 

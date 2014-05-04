@@ -106,16 +106,16 @@ today I will explain how to achieve the same feature with <a href="http://norikr
 With Norikra, we can use highly-functional SQL-like query for processing streaming data.</p>
 
 <p>We can achieve similar things using Fluentd by creating plugins like fluent-plugin-datacounter.
-However, because Fluentd uses CRuby, a Fluentd process can utilaize only one CPU core.
-In constract, Norikra uses JVM (Esper is wirtten with Java, and Norikra is written with JRuby), which can utilize all CPU cores with one process.
-This is attractive when we need to processs heavy log data that can not be done with only one CPU core. This situation actually happened to me.</p>
+However, because Fluentd uses CRuby, a Fluentd process can utilaize only one CPU core, in contrast,
+because Norikra uses JVM (Esper is wirtten with Java, and Norikra is written with JRuby), it can utilize all CPU cores with one process.
+This is the 1st reason to use Norikra. This feature is attractive especially when we need to processs heavy log data that can not be done with only one CPU core.</p>
 
-<p>Furthermore, in the case of Fluentd, we have to retart the Fluentd processes when we change the configuration file of Fluentd to add or remove new settings,
-but in the case of Norikra, it does not require to restart for adding or removing queries. This feature is also attractive.</p>
+<p>The 2nd reason to use Norikra is because it does not require to restart for adding or removing queries.
+Fluentd requires us to restart its processes when we change the configuration file of Fluentd to add or remove new settings. Norikra is attractive.</p>
 
 <h2>Data Counting using fluent-plugin-datacounter</h2>
 
-<p>The data counting using fluent-pugin-datacounter would be achieved as followings. We will replace this to Norikra.</p>
+<p>Let me describe how to perform data counting using fluent-pugin-datacounter first. We will replace this to Norikra.</p>
 
 <h3>Requirement</h3>
 
@@ -445,7 +445,7 @@ Here, we set <code>tag query_name</code> so that the tag of retrieved messages t
 
 <h2>Conclusion</h2>
 
-<p>I explained how to replace fluent-plguin-datacounter with Norikra. Try it out!</p>
+<p>I explained how to replace fluent-plugin-datacounter with Norikra. Try it out!</p>
 </div>
 
 

@@ -293,7 +293,7 @@ Also, this sets <code>hostname</code> to the <code>host</code> field of messages
 <p>Surprisingly, <strong>we can write Java code</strong> in a Norikra query. So, we can realize same conditions with the case of fluent-plugin-datacounter by using <code>String#matches</code>.
 Also, we can take couting for each host using <code>GROUP BY</code> statement. Cool.</p>
 
-<p>EDIT: I replaced <code>COUNT(1, status.matches('^2\d\d$'))</code> to <code>COUNT(1, status REGEXP '^2\d\d$')</code> because the master <a href="https://twitter.com/tagomoris">tagormoris</a>, the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using <code>COUNT(1, status / 100 = 2)</code> would achieve better performances.</p>
+<p>EDIT: I replaced <code>COUNT(1, status.matches('^2\d\d$'))</code> to <code>COUNT(1, status REGEXP '^2\d\d$')</code> because the master <a href="https://twitter.com/tagomoris">tagomoris</a>, the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using <code>COUNT(1, status / 100 = 2)</code> would achieve better performances.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

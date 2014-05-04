@@ -101,7 +101,20 @@ today I will explain how to achieve the same feature with <a href="http://norikr
 
 <h2>What Not Covered</h2>
 
-<p>In this article, I will not cover, what is Norikra, how to install Norikra, how to install Fluentd.</p>
+<p>In this article, I will not cover, how to install Norikra, how to install Fluentd.</p>
+
+<h2>What is Norikra, and Why to Use Norikra</h2>
+
+<p>Norikra is a Schema-less Stream Processor based on Esper, which is a kind of CEP (Complex Event Processing) engine.
+With Norikra, we can use highly-functional SQL-like query for processing streaming data.</p>
+
+<p>We can achieve similar things using Fluentd by creating plugins like fluent-plugin-datacounter.
+However, because Fluentd uses CRuby, a Fluentd process can utilaize only one CPU core.
+In constract, Norikra uses JVM (Esper is wirtten with Java, and Norikra is written with JRuby), which can utilize all CPU cores with one process.
+This is attractive when we need to processs heavy log data that can not be done with only one CPU core. This situation actually happened to me.</p>
+
+<p>Furthermore, in the case of Fluentd, we have to retart the Fluentd processes when we change the configuration file of Fluentd to add or remove new settings,
+but in the case of Norikra, it does not require to restart for adding or removing queries. This feature is also attractive.</p>
 
 <h2>Data Counting using fluent-plugin-datacounter</h2>
 

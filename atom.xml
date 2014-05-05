@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-05T09:47:17+09:00</updated>
+  <updated>2014-05-05T09:50:02+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -161,7 +161,7 @@ we will try to replace fluent-plugin-datacounter with out_norikra, Norikra Query
 
 <p>Configure Fluentd to receive data, and transfer the data to Norikra.</p>
 
-<p>This configuration sets the <code>target</code> of Norikra (which is like the <code>table</code> of RDBMS) to be <code>logname</code> of &ldquo;visualizer.<em>logname</em>.<em>hostname</em>&rdquo; tag.
+<p>This configuration sets a <code>target</code> of Norikra (which are like the <code>table</code> of RDBMS) to be a <code>logname</code> of the &ldquo;visualizer.<em>logname</em>.<em>hostname</em>&rdquo; tag.
 Also, this sets <code>hostname</code> to the <code>host</code> field of messages by extracting it from tags.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

@@ -14,11 +14,24 @@ REMARK: This article is a short translated version of Japanese article written a
 
 ## What Not Covered
 
-In this article, I will not cover, what is Norikra, how to install Norikra, how to install Fluentd.
+In this article, I will not cover, how to install Norikra, how to install Fluentd.
+
+## What is Norikra, and Why to Use Norikra
+
+Norikra is a Schema-less Stream Processor based on Esper, which is a kind of CEP (Complex Event Processing) engine. 
+With Norikra, we can use highly-functional SQL-like query for processing streaming data. 
+
+We can achieve similar things by using plugins like fluent-plugin-datacounter.
+However, a Fluentd process can utilize only one CPU core because Fluentd uses CRuby,
+in contrast, a Norikra process can utilize multiple CPU cores because Norikra uses JVM (Esper is wirtten with Java, and Norikra is written with JRuby).
+This is the 1st reason to use Norikra. This feature is attractive especially when we need to processs heavy log data where one CPU core is not sufficient to process it in real-time.
+
+The 2nd reason to use Norikra is because it does not require to restart for adding or removing queries. 
+Fluentd requires us to restart its processes when we change their configuration files to add or remove new settings. 
 
 ## Data Counting using fluent-plugin-datacounter
 
-The data counting using fluent-pugin-datacounter would be achieved as followings. We will replace this to Norikra.
+Let me describe how to perform data counting using fluent-pugin-datacounter first. We will replace this to Norikra later.
 
 ### Requirement
 
@@ -30,7 +43,7 @@ Assume there is a demand as followings:
 
 ### Specification of Input Data (Log)
 
-Assume that log data are sent from Fluentd agent with tags like "visualzier.*logname*.*hostname*" where *logname* stands for an arbitrary string which operation engineers name to distinguish logs. 
+Assume that log data are sent from Fluentd agent with tags like "visualizer.*logname*.*hostname*" where *logname* stands for an arbitrary string which operation engineers name to distinguish logs. 
 
 Also, assume that messages contain `time`, `status`, `reqtime`, `method`, `uri` fields. 
 
@@ -42,7 +55,7 @@ Example) visualizer.api_restful.host001
 
 ### Configuration
 
-The status code counting can be achived with the following configuration using fluent-plugin-datacounter. 
+The status code counting can be achieved with the following configuration using fluent-plugin-datacounter. 
 
 ```apache
 <source>
@@ -82,7 +95,7 @@ The status code counting can be achived with the following configuration using f
 
 The output messages become as followings (unnecessary fields are ommitted):
 
-```json
+```js
 status_count.visualizer.api_restful.hosts.host001:
 {"2xx_count":5,"3xx_count":0,"400_count":0,"4xx_count":0,"503_count":0,"5xx_count":0}
 ```
@@ -92,13 +105,13 @@ Let us think of replacing this with Norikra.
 ## Data Counting using Norikra
 
 Referring the [document](http://norikra.github.io/) of Norikra, and README of [fluent-plugin-norikra](https://github.com/norikra/fluent-plugin-norikra), 
-we will try to replace fluent-plugin-datacounter with out_norikra, Norikra Query (accurately, EPL of Esper), in_norikra. 
+we will try to replace fluent-plugin-datacounter with out_norikra, Norikra Query (accurately, EPL of Esper), and in_norikra. 
 
 **in_norikra**
 
 Configura Fluentd to receive data, and transfer the data to Norikra. 
 
-This configuration is sets the `target` of Norikra (which is like the `table` of RDBMS) to be `logname` of "visualizer.*logname*.*hostname*" tag. 
+This configuration sets the `target` of Norikra (which is like the `table` of RDBMS) to be `logname` of "visualizer.*logname*.*hostname*" tag. 
 Also, this sets `hostname` to the `host` field of messages by extracting it from tags. 
 
 ```apache
@@ -132,7 +145,7 @@ Also, this sets `hostname` to the `host` field of messages by extracting it from
 Surprisingly, **we can write Java code** in a Norikra query. So, we can realize same conditions with the case of fluent-plugin-datacounter by using `String#matches`. 
 Also, we can take couting for each host using `GROUP BY` statement. Cool. 
 
-EDIT: I replaced `COUNT(1, status.matches('^2\d\d$'))` to `COUNT(1, status REGEXP '^2\d\d$')` because the master [tagormoris](https://twitter.com/tagomoris), the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using `COUNT(1, status / 100 = 2)` would achieve better performances. 
+EDIT: I replaced `COUNT(1, status.matches('^2\d\d$'))` to `COUNT(1, status REGEXP '^2\d\d$')` because the master [tagomoris](https://twitter.com/tagomoris), the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using `COUNT(1, status / 100 = 2)` would achieve better performances. 
 
 ```bash
 # creation of a target
@@ -224,6 +237,6 @@ status_count.host.api_restful:
 
 ## Conclusion
 
-I explained how to replace fluent-plguin-datacounter with Norikra. Try it out!
+I explained how to replace fluent-plugin-datacounter with Norikra. Try it out!
 
 

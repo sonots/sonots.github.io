@@ -111,7 +111,7 @@ we will try to replace fluent-plugin-datacounter with out_norikra, Norikra Query
 
 Configure Fluentd to receive data, and transfer the data to Norikra. 
 
-This configuration sets the `target` of Norikra (which is like the `table` of RDBMS) to be `logname` of "visualizer.*logname*.*hostname*" tag. 
+This configuration sets a `target` of Norikra (which are like the `table` of RDBMS) to be a `logname` of the "visualizer.*logname*.*hostname*" tag. 
 Also, this sets `hostname` to the `host` field of messages by extracting it from tags. 
 
 ```apache

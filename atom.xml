@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T00:06:47+09:00</updated>
+  <updated>2014-05-08T00:08:16+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -39,7 +39,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 
 <p>I just write catalog tables here.</p>
 
-<h3>Aggregation Fuctions</h3>
+<h3>SQL Fuctions</h3>
 
 <table>
 <thead>
@@ -159,7 +159,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 
 <p>NOTE: Norikra supports UDF, so users can create functions by themselves if want</p>
 
-<h3>Query Features</h3>
+<h3>SQL Features</h3>
 
 <table>
 <thead>

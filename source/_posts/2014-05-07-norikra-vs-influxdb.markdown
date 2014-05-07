@@ -55,14 +55,14 @@ NOTE: Norikra supports UDF, so users can create functions by themselves if they 
 
 Feature                       | Norikra | InfluxDB | NOTE                                                              
 ------------------------------|---------|----------|-------------------------------------------------------------------
-Time batch window             | YES     | YES      | Of course, both support the feature to calculate periodically
+Time batch window             | YES     | YES      | Of course, both support the feature to process periodically
 Externally timed batch window | YES     | NO       | A feature to process based on the time field of messages        
 Sub query                     | YES     | NO       |                                                                   
 JOIN                          | YES     | YES      |                                                                   
-MERGE                         | NO      | YES      | A feature of InfluxDB to merge results from multiple tables. One use regular expressions for tables
-Query group                   | YES     | NO       | Name a group for queries                                          
+MERGE                         | NO      | YES      | A feature of InfluxDB to merge results from multiple tables. One can use regular expressions to specify tables
+Query group                   | YES     | NO       | Make a group for queries                                          
 Program codes                 | YES     | NO       | One can write Java codes on Norikra queries                        
-Nested JSON                   | YES     | NO       | One can specify fields like parrent.child when JSON is nested      
+Nested JSON                   | YES     | NO       | One can specify fields like `parrent.child` when JSON is nested      
 GROUP BY                      | YES     | YES      |                                                                   
 HAVING                        | YES     | NO       |                                                                   
 ORDER BY                      | YES     | NO       | InfluxDB has `order`, but it is only for the `time` field         

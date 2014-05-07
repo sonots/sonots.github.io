@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""Norikra vs. InfluxDB""
+title: "Norikra vs. InfluxDB"
 date: 2014-05-07 22:53:08 +0900
 comments: true
 categories: 

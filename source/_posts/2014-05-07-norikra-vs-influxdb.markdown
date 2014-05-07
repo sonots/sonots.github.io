@@ -39,7 +39,7 @@ MEAN       | YES     | YES      |
 MODE       | NO      | YES      |                             
 MEDIAN     | NO      | YES      |                             
 DISTINCT   | YES     | YES      |                             
-PERCENTILE | YES     | YES      | [Implemented as a UDF](https//github.com/norikra/norikra-udf-percentile)
+PERCENTILE | YES     | YES      | Norikra [implemented](https//github.com/norikra/norikra-udf-percentile) as a UDF
 HISTOGRAM  | NO      | YES      |                             
 DERIVATIVE | NO      | YES      |                              
 SUM        | YES     | YES      |                             

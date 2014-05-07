@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T00:23:24+09:00</updated>
+  <updated>2014-05-08T01:42:51+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -29,7 +29,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 
 <p>It looks both can do similar things.</p>
 
-<p>So, I compared Norikra and InfluxDB in terms of query features. I felt that it would be nice to use InfluxDB if it has sufficent query features, in anticipation of the data persistence.</p>
+<p>So, I compared Norikra and InfluxDB in terms of query features. I felt that it would be nice to use InfluxDB if it has sufficent query features because it can be also used for data pesistence.</p>
 
 <h2>TL; DR</h2>
 

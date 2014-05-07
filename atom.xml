@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T00:05:32+09:00</updated>
+  <updated>2014-05-08T00:06:47+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -20,7 +20,7 @@
     <id>http://sonots.github.io/blog/2014/05/07/norikra-vs-influxdb</id>
     <content type="html"><![CDATA[<p>Today, I give a comparison between Norikra and InfluxDB in terms of query features.</p>
 
-<h2>What is Norikra, and What is InfluxDB</h2>
+<h2>Introduction &ndash; What is Norikra, and What is InfluxDB</h2>
 
 <p><a href="http://norikra.github.io/">Norikra</a> is a Schema-less Stream Processor based on Esper, which is a kind of CEP (Complex Event Processing) engine. With Norikra, we can use highly-functional SQL-like query for processing time series streaming data.</p>
 
@@ -31,7 +31,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 
 <p>So, I compared Norikra and InfluxDB in terms of query features. I felt that it would be nice to use InfluxDB if it has a sufficent features in anticipation of the data persistence.</p>
 
-<h2>TR; DR</h2>
+<h2>TL; DR</h2>
 
 <p>Norikra won</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T00:09:35+09:00</updated>
+  <updated>2014-05-08T00:11:13+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -14,9 +14,9 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Norikra vs Influxdb]]></title>
+    <title type="html"><![CDATA[Norikra vs. InfluxDB]]></title>
     <link href="http://sonots.github.io/blog/2014/05/07/norikra-vs-influxdb/"/>
-    <updated>2014-05-07T00:00:00+09:00</updated>
+    <updated>2014-05-07T22:53:08+09:00</updated>
     <id>http://sonots.github.io/blog/2014/05/07/norikra-vs-influxdb</id>
     <content type="html"><![CDATA[<p>Today, I give a comparison between Norikra and InfluxDB in terms of query features.</p>
 

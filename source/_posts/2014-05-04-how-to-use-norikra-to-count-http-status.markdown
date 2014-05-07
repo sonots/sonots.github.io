@@ -24,10 +24,11 @@ With Norikra, we can use highly-functional SQL-like query for processing streami
 We can achieve similar things by using plugins like fluent-plugin-datacounter.
 However, a Fluentd process can utilize only one CPU core because Fluentd uses CRuby,
 in contrast, a Norikra process can utilize multiple CPU cores because Norikra uses JVM (Esper is wirtten with Java, and Norikra is written with JRuby).
-This is the 1st reason to use Norikra. This feature is attractive especially when we need to processs heavy log data where one CPU core is not sufficient to process it in real-time.
+This is the 1st reason to use Norikra. This is attractive especially when we need to processs heavy log data where one CPU core is not sufficient to process it in real-time.
 
 The 2nd reason to use Norikra is because it does not require to restart for adding or removing queries. 
 Fluentd requires us to restart its processes when we change their configuration files to add or remove new settings. 
+I need the graceful restart.
 
 ## Data Counting using fluent-plugin-datacounter
 

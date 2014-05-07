@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T00:17:28+09:00</updated>
+  <updated>2014-05-08T00:18:32+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -103,7 +103,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 <td align="left">PERCENTILE </td>
 <td align="left"> YES     </td>
 <td align="left"> YES      </td>
-<td align="left"> <a href="https//github.com/norikra/norikra-udf-percentile">Implemented as a UDF</a></td>
+<td align="left"> Norikra <a href="https//github.com/norikra/norikra-udf-percentile">implemented</a> as a UDF</td>
 </tr>
 <tr>
 <td align="left">HISTOGRAM  </td>

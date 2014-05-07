@@ -29,44 +29,44 @@ I just write catalog tables here.
 
 ### Aggregation Fuctions 
 
-|            | Norikra | InfluxDB | NOTE                        |
-|------------|---------|----------|-----------------------------|
-| COUNT      | YES     | YES      |                             |
-| MIN        | YES     | YES      |                             |
-| MAX        | YES     | YES      |                             |
-| AVG        | YES     | YES      |                             |
-| MEAN       | YES     | YES      |                             |
-| MODE       | NO      | YES      |                             |
-| MEDIAN     | NO      | YES      |                             |
-| DISTINCT   | YES     | YES      |                             |
-| PERCENTILE | YES     | YES      | Already [implemented as a UDF](https://github.com/norikra/norikra-udf-percentile) |
-| HISTOGRAM  | NO      | YES      |                             |
-| DERIVATIVE | NO      | YES      |                             | 
-| SUM        | YES     | YES      |                             |
-| STDDEV     | NO      | YES      |                             |
-| FIRST      | YES     | YES      |                             |
-| LAST       | YES     | YES      |                             |
-| MAXBY      | YES     | NO       |                             |
-| MINBY      | YES     | NO       |                             |
+|            | Norikra | InfluxDB | NOTE                        
+|------------|---------|----------|-----------------------------
+| COUNT      | YES     | YES      |                             
+| MIN        | YES     | YES      |                             
+| MAX        | YES     | YES      |                             
+| AVG        | YES     | YES      |                             
+| MEAN       | YES     | YES      |                             
+| MODE       | NO      | YES      |                             
+| MEDIAN     | NO      | YES      |                             
+| DISTINCT   | YES     | YES      |                             
+| PERCENTILE | YES     | YES      | [implemented as a UDF](https//github.com/norikra/norikra-udf-percentile)
+| HISTOGRAM  | NO      | YES      |                             
+| DERIVATIVE | NO      | YES      |                              
+| SUM        | YES     | YES      |                             
+| STDDEV     | NO      | YES      |                             
+| FIRST      | YES     | YES      |                             
+| LAST       | YES     | YES      |                             
+| MAXBY      | YES     | NO       |                             
+| MINBY      | YES     | NO       |                             
 
 NOTE: Norikra supports UDF, so users can create functions by themselves if want
 
 ### Features of Query
 
-|                               | Norikra | InfluxDB | NOTE                                                              |
-|-------------------------------|---------|----------|-------------------------------------------------------------------|
-| Time batch window             | YES     | YES      | Of course, both support the feature to aggregate in each interval |
-| Externally timed batch window | YES     | NO       | A feature to aggregate based on the time field of messages        |
-| Sub query                     | YES     | NO       |                                                                   |
-| JOIN                          | YES     | YES      |                                                                   |
-| MERGE                         | NO      | YES      | A feature of InfluxDB to merge results from multiple tables. Possible to specify regular expressions for tables |
-| Query group                   | YES     | NO       | Name a group for queries                                          |
-| Program codes                 | YES     | NO       | We can write Java codes on Norikra queries                        |
-| Nested JSON                   | YES     | NO       | We can specify fields like `parrent.child` when JSON is nested    |
-| GROUP BY                      | YES     | YES      |                                                                   |
-| HAVING                        | YES     | NO       |                                                                   |
-| ORDER BY                      | YES     | NO       | InfluxDB has `order`, but it is only for the `time` field         |
-| UDF                           | YES     | NO       |                                                                   |
+|                               | Norikra | InfluxDB | NOTE                                                              
+|-------------------------------|---------|----------|-------------------------------------------------------------------
+| Time batch window             | YES     | YES      | Of course, both support the feature to aggregate in each interval 
+| Externally timed batch window | YES     | NO       | A feature to aggregate based on the time field of messages        
+| Sub query                     | YES     | NO       |                                                                   
+| JOIN                          | YES     | YES      |                                                                   
+| MERGE                         | NO      | YES      | A feature of InfluxDB to merge results from multiple tables. One use regular expressions for tables
+| Query group                   | YES     | NO       | Name a group for queries                                          
+| Program codes                 | YES     | NO       | One can write Java codes on Norikra queries                        
+| Nested JSON                   | YES     | NO       | One can specify fields like parrent.child when JSON is nested      
+| GROUP BY                      | YES     | YES      |                                                                   
+| HAVING                        | YES     | NO       |                                                                   
+| ORDER BY                      | YES     | NO       | InfluxDB has `order`, but it is only for the `time` field         
+| UDF                           | YES     | NO       |                                                                   
 
 ## Conclusion
 

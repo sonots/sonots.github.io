@@ -1,0 +1,263 @@
+<p>Today, I give a comparison between Norikra and InfluxDB in terms of query features.</p>
+
+<h2>What is Norikra, and What is InfluxDB</h2>
+
+<p><a href="http://norikra.github.io/">Norikra</a> is a Schema-less Stream Processor based on Esper, which is a kind of CEP (Complex Event Processing) engine. With Norikra, we can use highly-functional SQL-like query for processing time series streaming data.</p>
+
+<p><a href="http://influxdb.org/">InfluxDB</a> is a distributed time series database, which has a SQL-like query language designed for working with time series and analytics.
+It has a feature called &ldquo;Continuous Query&rdquo; which applies queries charged in advance, and stores the resulted data into a Series (which is like a &ldquo;table&rdquo; of RDBMS) progressively.</p>
+
+<p>It looks both can do similar things.</p>
+
+<p>So, I compared Norikra and InfluxDB in terms of query features. I felt that it would be nice to use InfluxDB if it has a sufficent features in anticipation of the data persistence.</p>
+
+<h2>TR; DR</h2>
+
+<p>Norikra won</p>
+
+<h2>Feature Catalog</h2>
+
+<p>I just write catalog tables here.</p>
+
+<h3>Aggregation Fuctions</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>            </th>
+<th> Norikra </th>
+<th> InfluxDB </th>
+<th> NOTE                        </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> COUNT      </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MIN        </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MAX        </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> AVG        </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MEAN       </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MODE       </td>
+<td> NO      </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MEDIAN     </td>
+<td> NO      </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> DISTINCT   </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> PERCENTILE </td>
+<td> YES     </td>
+<td> YES      </td>
+<td> Already <a href="https://github.com/norikra/norikra-udf-percentile">implemented as a UDF</a> |</td>
+</tr>
+<tr>
+<td></td>
+<td> HISTOGRAM  </td>
+<td> NO      </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> DERIVATIVE </td>
+<td> NO      </td>
+<td> YES      </td>
+<td>                             | </td>
+</tr>
+<tr>
+<td></td>
+<td> SUM        </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> STDDEV     </td>
+<td> NO      </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> FIRST      </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> LAST       </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MAXBY      </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                             |</td>
+</tr>
+<tr>
+<td></td>
+<td> MINBY      </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                             |</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>NOTE: Norikra supports UDF, so users can create functions by themselves if want</p>
+
+<h3>Features of Query</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>                               </th>
+<th> Norikra </th>
+<th> InfluxDB </th>
+<th> NOTE                                                              </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Time batch window             </td>
+<td> YES     </td>
+<td> YES      </td>
+<td> Of course, both support the feature to aggregate in each interval |</td>
+</tr>
+<tr>
+<td></td>
+<td> Externally timed batch window </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> A feature to aggregate based on the time field of messages        |</td>
+</tr>
+<tr>
+<td></td>
+<td> Sub query                     </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                                                                   |</td>
+</tr>
+<tr>
+<td></td>
+<td> JOIN                          </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                                                                   |</td>
+</tr>
+<tr>
+<td></td>
+<td> MERGE                         </td>
+<td> NO      </td>
+<td> YES      </td>
+<td> A feature of InfluxDB to merge results from multiple tables. Possible to specify regular expressions for tables |</td>
+</tr>
+<tr>
+<td></td>
+<td> Query group                   </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> Name a group for queries                                          |</td>
+</tr>
+<tr>
+<td></td>
+<td> Program codes                 </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> We can write Java codes on Norikra queries                        |</td>
+</tr>
+<tr>
+<td></td>
+<td> Nested JSON                   </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> We can specify fields like <code>parrent.child</code> when JSON is nested    |</td>
+</tr>
+<tr>
+<td></td>
+<td> GROUP BY                      </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                                                                   |</td>
+</tr>
+<tr>
+<td></td>
+<td> HAVING                        </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                                                                   |</td>
+</tr>
+<tr>
+<td></td>
+<td> ORDER BY                      </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> InfluxDB has <code>order</code>, but it is only for the <code>time</code> field         |</td>
+</tr>
+<tr>
+<td></td>
+<td> UDF                           </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                                                                   |</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Conclusion</h2>
+
+<p>Norikra won overwhelmingly. That said, because InfluxDB is storage, but Norikra is an on-memory engine, the value of InfluxDB shall not be impaired in any way.</p>

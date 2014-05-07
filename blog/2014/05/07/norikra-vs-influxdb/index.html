@@ -21,48 +21,211 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 
 <h3>Aggregation Fuctions</h3>
 
-<pre><code>       | Norikra | InfluxDB | NOTE                        
-</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left">Function   </th>
+<th align="left"> Norikra </th>
+<th align="left"> InfluxDB </th>
+<th align="left"> NOTE                        </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">COUNT      </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MIN        </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MAX        </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">AVG        </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MEAN       </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MODE       </td>
+<td align="left"> NO      </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MEDIAN     </td>
+<td align="left"> NO      </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">DISTINCT   </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">PERCENTILE </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left"> <a href="https//github.com/norikra/norikra-udf-percentile">implemented as a UDF</a></td>
+</tr>
+<tr>
+<td align="left">HISTOGRAM  </td>
+<td align="left"> NO      </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">DERIVATIVE </td>
+<td align="left"> NO      </td>
+<td align="left"> YES      </td>
+<td align="left">                              </td>
+</tr>
+<tr>
+<td align="left">SUM        </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">STDDEV     </td>
+<td align="left"> NO      </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">FIRST      </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">LAST       </td>
+<td align="left"> YES     </td>
+<td align="left"> YES      </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MAXBY      </td>
+<td align="left"> YES     </td>
+<td align="left"> NO       </td>
+<td align="left">                             </td>
+</tr>
+<tr>
+<td align="left">MINBY      </td>
+<td align="left"> YES     </td>
+<td align="left"> NO       </td>
+<td align="left">                             </td>
+</tr>
+</tbody>
+</table>
 
-<p>&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;
-COUNT      | YES     | YES      |                           <br/>
-MIN        | YES     | YES      |                           <br/>
-MAX        | YES     | YES      |                           <br/>
-AVG        | YES     | YES      |                           <br/>
-MEAN       | YES     | YES      |                           <br/>
-MODE       | NO      | YES      |                           <br/>
-MEDIAN     | NO      | YES      |                           <br/>
-DISTINCT   | YES     | YES      |                           <br/>
-PERCENTILE | YES     | YES      | <a href="https//github.com/norikra/norikra-udf-percentile">implemented as a UDF</a>
-HISTOGRAM  | NO      | YES      |                           <br/>
-DERIVATIVE | NO      | YES      |                            <br/>
-SUM        | YES     | YES      |                           <br/>
-STDDEV     | NO      | YES      |                           <br/>
-FIRST      | YES     | YES      |                           <br/>
-LAST       | YES     | YES      |                           <br/>
-MAXBY      | YES     | NO       |                           <br/>
-MINBY      | YES     | NO       |</p>
 
 <p>NOTE: Norikra supports UDF, so users can create functions by themselves if want</p>
 
-<h3>Features of Query</h3>
+<h3>Query Features</h3>
 
-<pre><code>                          | Norikra | InfluxDB | NOTE                                                              
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Feature                       </th>
+<th> Norikra </th>
+<th> InfluxDB </th>
+<th> NOTE                                                              </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time batch window             </td>
+<td> YES     </td>
+<td> YES      </td>
+<td> Of course, both support the feature to aggregate in each interval </td>
+</tr>
+<tr>
+<td>Externally timed batch window </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> A feature to aggregate based on the time field of messages        </td>
+</tr>
+<tr>
+<td>Sub query                     </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                                                                   </td>
+</tr>
+<tr>
+<td>JOIN                          </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                                                                   </td>
+</tr>
+<tr>
+<td>MERGE                         </td>
+<td> NO      </td>
+<td> YES      </td>
+<td> A feature of InfluxDB to merge results from multiple tables. One use regular expressions for tables</td>
+</tr>
+<tr>
+<td>Query group                   </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> Name a group for queries                                          </td>
+</tr>
+<tr>
+<td>Program codes                 </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> One can write Java codes on Norikra queries                        </td>
+</tr>
+<tr>
+<td>Nested JSON                   </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> One can specify fields like parrent.child when JSON is nested      </td>
+</tr>
+<tr>
+<td>GROUP BY                      </td>
+<td> YES     </td>
+<td> YES      </td>
+<td>                                                                   </td>
+</tr>
+<tr>
+<td>HAVING                        </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                                                                   </td>
+</tr>
+<tr>
+<td>ORDER BY                      </td>
+<td> YES     </td>
+<td> NO       </td>
+<td> InfluxDB has <code>order</code>, but it is only for the <code>time</code> field         </td>
+</tr>
+<tr>
+<td>UDF                           </td>
+<td> YES     </td>
+<td> NO       </td>
+<td>                                                                   </td>
+</tr>
+</tbody>
+</table>
 
-<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;
-Time batch window             | YES     | YES      | Of course, both support the feature to aggregate in each interval
-Externally timed batch window | YES     | NO       | A feature to aggregate based on the time field of messages      <br/>
-Sub query                     | YES     | NO       |                                                                 <br/>
-JOIN                          | YES     | YES      |                                                                 <br/>
-MERGE                         | NO      | YES      | A feature of InfluxDB to merge results from multiple tables. One use regular expressions for tables
-Query group                   | YES     | NO       | Name a group for queries                                        <br/>
-Program codes                 | YES     | NO       | One can write Java codes on Norikra queries                      <br/>
-Nested JSON                   | YES     | NO       | One can specify fields like parrent.child when JSON is nested    <br/>
-GROUP BY                      | YES     | YES      |                                                                 <br/>
-HAVING                        | YES     | NO       |                                                                 <br/>
-ORDER BY                      | YES     | NO       | InfluxDB has <code>order</code>, but it is only for the <code>time</code> field       <br/>
-UDF                           | YES     | NO       |</p>
 
 <h2>Conclusion</h2>
 

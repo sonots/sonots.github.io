@@ -39,7 +39,7 @@ MEAN       | YES     | YES      |
 MODE       | NO      | YES      |                             
 MEDIAN     | NO      | YES      |                             
 DISTINCT   | YES     | YES      |                             
-PERCENTILE | YES     | YES      | [implemented as a UDF](https//github.com/norikra/norikra-udf-percentile)
+PERCENTILE | YES     | YES      | [Implemented as a UDF](https//github.com/norikra/norikra-udf-percentile)
 HISTOGRAM  | NO      | YES      |                             
 DERIVATIVE | NO      | YES      |                              
 SUM        | YES     | YES      |                             
@@ -49,7 +49,7 @@ LAST       | YES     | YES      |
 MAXBY      | YES     | NO       |                             
 MINBY      | YES     | NO       |                             
 
-NOTE: Norikra supports UDF, so users can create functions by themselves if want
+NOTE: Norikra supports UDF, so users can create functions by themselves if they want
 
 ### SQL Features
 

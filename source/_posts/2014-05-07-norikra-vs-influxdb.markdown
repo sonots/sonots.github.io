@@ -70,5 +70,5 @@ UDF                           | YES     | NO       |
 
 ## Conclusion
 
-Norikra won overwhelmingly. That said, because InfluxDB is storage, but Norikra is an on-memory engine, the value of InfluxDB shall not be impaired in any way.
+Norikra won overwhelmingly. That said, because InfluxDB is a storage, but Norikra is an on-memory engine, the value of InfluxDB shall not be impaired in any way.
 

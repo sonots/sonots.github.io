@@ -17,7 +17,7 @@ It has a feature called "Continuous Query" which applies queries charged in adva
 
 It looks both can do similar things. 
 
-So, I compared Norikra and InfluxDB in terms of query features. I felt that it would be nice to use InfluxDB if it has sufficent query features, in anticipation of the data persistence.
+So, I compared Norikra and InfluxDB in terms of query features. I felt that it would be nice to use InfluxDB if it has sufficent query features because it can be also used for data pesistence. 
 
 ## TL; DR
 

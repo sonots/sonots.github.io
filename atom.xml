@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T02:59:41+09:00</updated>
+  <updated>2014-05-08T03:01:15+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -249,7 +249,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 
 <h2>Conclusion</h2>
 
-<p>Norikra won overwhelmingly. That said, because InfluxDB is storage, but Norikra is an on-memory engine, the value of InfluxDB shall not be impaired in any way.</p>
+<p>Norikra won overwhelmingly. That said, because InfluxDB is a storage, but Norikra is an on-memory engine, the value of InfluxDB shall not be impaired in any way.</p>
 ]]></content>
   </entry>
   

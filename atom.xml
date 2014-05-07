@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-08T01:42:51+09:00</updated>
+  <updated>2014-05-08T01:45:14+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -181,7 +181,7 @@ It has a feature called &ldquo;Continuous Query&rdquo; which applies queries cha
 <td>Externally timed batch window </td>
 <td> YES     </td>
 <td> NO       </td>
-<td> A feature to process based on the time field of messages        </td>
+<td> A feature to process data based on the time field of messages        </td>
 </tr>
 <tr>
 <td>Sub query                     </td>

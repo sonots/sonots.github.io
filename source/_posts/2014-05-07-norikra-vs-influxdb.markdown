@@ -55,8 +55,8 @@ NOTE: Norikra supports UDF, so users can create functions by themselves if they 
 
 Feature                       | Norikra | InfluxDB | NOTE                                                              
 ------------------------------|---------|----------|-------------------------------------------------------------------
-Time batch window             | YES     | YES      | Of course, both support the feature to aggregate in each interval 
-Externally timed batch window | YES     | NO       | A feature to aggregate based on the time field of messages        
+Time batch window             | YES     | YES      | Of course, both support the feature to calculate periodically
+Externally timed batch window | YES     | NO       | A feature to process based on the time field of messages        
 Sub query                     | YES     | NO       |                                                                   
 JOIN                          | YES     | YES      |                                                                   
 MERGE                         | NO      | YES      | A feature of InfluxDB to merge results from multiple tables. One use regular expressions for tables

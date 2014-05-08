@@ -204,12 +204,12 @@ I need the graceful restart.</p>
 </span><span class='line'>  <span class="nb">aggregate</span> tag
 </span><span class='line'>  <span class="nb">tag_prefix</span> status_count
 </span><span class='line'>  <span class="nb">count_key</span> status
-</span><span class='line'>  <span class="nb">pattern1</span> <span class="m">2</span>xx ^2\d\d$
-</span><span class='line'>  <span class="nb">pattern2</span> <span class="m">3</span>xx ^3\d\d$
+</span><span class='line'>  <span class="nb">pattern1</span> <span class="m">2</span>xx ^2..$
+</span><span class='line'>  <span class="nb">pattern2</span> <span class="m">3</span>xx ^3..$
 </span><span class='line'>  <span class="nb">pattern3</span> <span class="m">400</span> ^400$
-</span><span class='line'>  <span class="nb">pattern4</span> <span class="m">4</span>xx ^4\d\d$
+</span><span class='line'>  <span class="nb">pattern4</span> <span class="m">4</span>xx ^4..$
 </span><span class='line'>  <span class="nb">pattern5</span> <span class="m">503</span> ^503$
-</span><span class='line'>  <span class="nb">pattern6</span> <span class="m">5</span>xx ^5\d\d$
+</span><span class='line'>  <span class="nb">pattern6</span> <span class="m">5</span>xx ^5..$
 </span><span class='line'>  <span class="nb">output_per_tag</span> yes
 </span><span class='line'><span class="nt">&lt;/match&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -292,7 +292,7 @@ Also, this sets <code>hostname</code> to the <code>host</code> field of messages
 <p>Surprisingly, <strong>we can write Java code</strong> in a Norikra query. So, we can realize same conditions with the case of fluent-plugin-datacounter by using <code>String#matches</code>.
 Also, we can take couting for each host using <code>GROUP BY</code> statement. Cool.</p>
 
-<p>EDIT: I replaced <code>COUNT(1, status.matches('^2\d\d$'))</code> to <code>COUNT(1, status REGEXP '^2\d\d$')</code> because the master <a href="https://twitter.com/tagomoris">tagomoris</a>, the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using <code>COUNT(1, status / 100 = 2)</code> would achieve better performances.</p>
+<p>EDIT: I replaced <code>COUNT(1, status.matches('^2..$'))</code> to <code>COUNT(1, status REGEXP '^2..$')</code> because the master <a href="https://twitter.com/tagomoris">tagomoris</a>, the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using <code>COUNT(1, status / 100 = 2)</code> would achieve better performances.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -329,12 +329,12 @@ Also, we can take couting for each host using <code>GROUP BY</code> statement. C
 </span><span class='line'><span class="c"># all. `AS 2xx_count` was NG, so I made `As count_2xx`.</span>
 </span><span class='line'>norikra-client query add status_count.all.api_restful <span class="s2">&quot;$(cat &lt;&lt;EOF</span>
 </span><span class='line'><span class="s2">SELECT \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^2\d\d$&#39;) AS count_2xx, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^3\d\d$&#39;) AS count_3xx, \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^2..$&#39;) AS count_2xx, \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^3..$&#39;) AS count_3xx, \</span>
 </span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^400$&#39;) AS count_400, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^4(?!00)\d\d$&#39;) AS count_4xx, \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^4(?!00)..$&#39;) AS count_4xx, \</span>
 </span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^503$&#39;) AS count_503, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^5(?!03)\d\d$&#39;) AS count_5xx \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^5(?!03)..$&#39;) AS count_5xx \</span>
 </span><span class='line'><span class="s2">FROM api_restful.win:time_batch(60 sec)</span>
 </span><span class='line'><span class="s2">EOF</span>
 </span><span class='line'><span class="s2">)&quot;</span>
@@ -342,12 +342,12 @@ Also, we can take couting for each host using <code>GROUP BY</code> statement. C
 </span><span class='line'>norikra-client query add status_count.host.api_restful <span class="s2">&quot;$(cat &lt;&lt;EOF</span>
 </span><span class='line'><span class="s2">SELECT \</span>
 </span><span class='line'><span class="s2">host, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^2\d\d$&#39;) AS count_2xx, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^3\d\d$&#39;) AS count_3xx, \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^2..$&#39;) AS count_2xx, \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^3..$&#39;) AS count_3xx, \</span>
 </span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^400$&#39;) AS count_400, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^4(?!00)\d\d$&#39;) AS count_4xx, \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^4(?!00)..$&#39;) AS count_4xx, \</span>
 </span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^503$&#39;) AS count_503, \</span>
-</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^5(?!03)\d\d$&#39;) AS count_5xx \</span>
+</span><span class='line'><span class="s2">COUNT(1, status REGEXP &#39;^5(?!03)..$&#39;) AS count_5xx \</span>
 </span><span class='line'><span class="s2">FROM api_restful.win:time_batch(60 sec) \</span>
 </span><span class='line'><span class="s2">GROUP BY host</span>
 </span><span class='line'><span class="s2">EOF</span>
@@ -375,12 +375,12 @@ Also, we can take couting for each host using <code>GROUP BY</code> statement. C
 </span><span class='line'><span class="nv">$ </span>norikra-client query add status_count.all.2xx.api_restful <span class="se">\</span>
 </span><span class='line'>  <span class="s2">&quot;SELECT COUNT(status) AS count_2xx \</span>
 </span><span class='line'><span class="s2">  FROM api_restful.win:time_batch(60 sec) \</span>
-</span><span class='line'><span class="s2">  WHERE status REGEXP &#39;^2\d\d$&#39;&quot;</span>
+</span><span class='line'><span class="s2">  WHERE status REGEXP &#39;^2..$&#39;&quot;</span>
 </span><span class='line'><span class="c"># 3xx</span>
 </span><span class='line'><span class="nv">$ </span>norikra-client query add status_count.all.3xx.api_restful <span class="se">\</span>
 </span><span class='line'>  <span class="s2">&quot;SELECT COUNT(status) AS count_3xx \</span>
 </span><span class='line'><span class="s2">  FROM api_restful.win:time_batch(60 sec) \</span>
-</span><span class='line'><span class="s2">  WHERE status REGEXP &#39;^3\d\d$&#39;&quot;</span>
+</span><span class='line'><span class="s2">  WHERE status REGEXP &#39;^3..$&#39;&quot;</span>
 </span><span class='line'><span class="c"># 400 </span>
 </span><span class='line'><span class="c"># 4xx</span>
 </span><span class='line'><span class="c"># 503</span>
@@ -388,7 +388,7 @@ Also, we can take couting for each host using <code>GROUP BY</code> statement. C
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>but, I felt preparing many queries make difficult to manage them. So, I prefered the former <code>COUNT(1, status REGEXP '^2\d\d$')</code> way.</p>
+<p>but, I felt preparing many queries make difficult to manage them. So, I prefered the former <code>COUNT(1, status REGEXP '^2..$')</code> way.</p>
 
 <p><strong>in_norikra</strong></p>
 

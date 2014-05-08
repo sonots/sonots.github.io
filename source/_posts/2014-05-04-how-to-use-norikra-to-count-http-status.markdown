@@ -84,12 +84,12 @@ The status code counting can be achieved with the following configuration using 
   aggregate tag
   tag_prefix status_count
   count_key status
-  pattern1 2xx ^2\d\d$
-  pattern2 3xx ^3\d\d$
+  pattern1 2xx ^2..$
+  pattern2 3xx ^3..$
   pattern3 400 ^400$
-  pattern4 4xx ^4\d\d$
+  pattern4 4xx ^4..$
   pattern5 503 ^503$
-  pattern6 5xx ^5\d\d$
+  pattern6 5xx ^5..$
   output_per_tag yes
 </match>
 ```
@@ -146,7 +146,7 @@ Also, this sets `hostname` to the `host` field of messages by extracting it from
 Surprisingly, **we can write Java code** in a Norikra query. So, we can realize same conditions with the case of fluent-plugin-datacounter by using `String#matches`. 
 Also, we can take couting for each host using `GROUP BY` statement. Cool. 
 
-EDIT: I replaced `COUNT(1, status.matches('^2\d\d$'))` to `COUNT(1, status REGEXP '^2\d\d$')` because the master [tagomoris](https://twitter.com/tagomoris), the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using `COUNT(1, status / 100 = 2)` would achieve better performances. 
+EDIT: I replaced `COUNT(1, status.matches('^2..$'))` to `COUNT(1, status REGEXP '^2..$')` because the master [tagomoris](https://twitter.com/tagomoris), the author of Norikra, said the latter is better in performance. Thinking of performance, replacing REGEXP to LIKE, or converting status field to interger and using `COUNT(1, status / 100 = 2)` would achieve better performances. 
 
 ```bash
 # creation of a target
@@ -155,12 +155,12 @@ norikra-client target open api_restful
 # all. `AS 2xx_count` was NG, so I made `As count_2xx`.
 norikra-client query add status_count.all.api_restful "$(cat <<EOF
 SELECT \
-COUNT(1, status REGEXP '^2\d\d$') AS count_2xx, \
-COUNT(1, status REGEXP '^3\d\d$') AS count_3xx, \
+COUNT(1, status REGEXP '^2..$') AS count_2xx, \
+COUNT(1, status REGEXP '^3..$') AS count_3xx, \
 COUNT(1, status REGEXP '^400$') AS count_400, \
-COUNT(1, status REGEXP '^4(?!00)\d\d$') AS count_4xx, \
+COUNT(1, status REGEXP '^4(?!00)..$') AS count_4xx, \
 COUNT(1, status REGEXP '^503$') AS count_503, \
-COUNT(1, status REGEXP '^5(?!03)\d\d$') AS count_5xx \
+COUNT(1, status REGEXP '^5(?!03)..$') AS count_5xx \
 FROM api_restful.win:time_batch(60 sec)
 EOF
 )"
@@ -168,12 +168,12 @@ EOF
 norikra-client query add status_count.host.api_restful "$(cat <<EOF
 SELECT \
 host, \
-COUNT(1, status REGEXP '^2\d\d$') AS count_2xx, \
-COUNT(1, status REGEXP '^3\d\d$') AS count_3xx, \
+COUNT(1, status REGEXP '^2..$') AS count_2xx, \
+COUNT(1, status REGEXP '^3..$') AS count_3xx, \
 COUNT(1, status REGEXP '^400$') AS count_400, \
-COUNT(1, status REGEXP '^4(?!00)\d\d$') AS count_4xx, \
+COUNT(1, status REGEXP '^4(?!00)..$') AS count_4xx, \
 COUNT(1, status REGEXP '^503$') AS count_503, \
-COUNT(1, status REGEXP '^5(?!03)\d\d$') AS count_5xx \
+COUNT(1, status REGEXP '^5(?!03)..$') AS count_5xx \
 FROM api_restful.win:time_batch(60 sec) \
 GROUP BY host
 EOF
@@ -187,19 +187,19 @@ Notice that the query can be also constructed as followings:
 $ norikra-client query add status_count.all.2xx.api_restful \
   "SELECT COUNT(status) AS count_2xx \
   FROM api_restful.win:time_batch(60 sec) \
-  WHERE status REGEXP '^2\d\d$'"
+  WHERE status REGEXP '^2..$'"
 # 3xx
 $ norikra-client query add status_count.all.3xx.api_restful \
   "SELECT COUNT(status) AS count_3xx \
   FROM api_restful.win:time_batch(60 sec) \
-  WHERE status REGEXP '^3\d\d$'"
+  WHERE status REGEXP '^3..$'"
 # 400 
 # 4xx
 # 503
 # 5xx
 ```
 
-but, I felt preparing many queries make difficult to manage them. So, I prefered the former `COUNT(1, status REGEXP '^2\d\d$')` way.
+but, I felt preparing many queries make difficult to manage them. So, I prefered the former `COUNT(1, status REGEXP '^2..$')` way.
 
 **in_norikra**
 

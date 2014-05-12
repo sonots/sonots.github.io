@@ -9,7 +9,7 @@
   <meta name="author" content="Naotoshi Seo">
 
   
-  <meta name="description" content="Today, I give a comparison between Norikra and InfluxDB in terms of query features. Introduction &ndash; What is Norikra, and What is InfluxDB &hellip;">
+  <meta name="description" content="Today, I present &ldquo;Fluentd Server&rdquo;, a Fluentd config distribution server. What is Fluentd Server I heard some opinions as some people want &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,130 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/12/fluentd-config-distribution-server/">Fluentd Config Distribution Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T19:52:23+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Today, I present &ldquo;<a href="https://github.com/sonots/fluentd-server">Fluentd Server</a>&rdquo;, a Fluentd config distribution server.</p>
+
+<h2>What is Fluentd Server</h2>
+
+<p>I heard some opinions as some people want something like chef-server for Fluentd, so I created the fluentd-server.</p>
+
+<p>With Fluentd Server, you can manage fluentd configuration files centrally with erb.</p>
+
+<p>For example, you may create a config post whose name is worker as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nt">&lt;source&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> forward
+</span><span class='line'>  <span class="nb">port</span> &lt;%= port %&gt;
+</span><span class='line'><span class="nt">&lt;/source&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;match</span> <span class="s">**</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> stdout
+</span><span class='line'><span class="nt">&lt;/match&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you can download the config via an API whose uri is like <code>/api/worker?port=24224</code> where its query parameters are replaced with variables in the erb. The downloaded contents should become as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nt">&lt;source&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> forward
+</span><span class='line'>  <span class="nb">port</span> <span class="m">24224</span>
+</span><span class='line'><span class="nt">&lt;/source&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;match</span> <span class="s">**</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> stdout
+</span><span class='line'><span class="nt">&lt;/match&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>How to Use from Fluentd</h2>
+
+<p>The include directive of fluentd config supports http, so write just one line on your fluentd.conf as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="c"># /etc/fluentd.conf</span>
+</span><span class='line'><span class="nb">include</span> http://fqdn.to.fluentd-server/api/:name?port=24224
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where :name is the name of your config post, so that it will download the real configuration from the Fluentd Server.</p>
+
+<p>You can see the specification detail of API at <a href="https://github.com/sonots/fluentd-server/blob/master/API.md">API.md</a>.</p>
+
+<h2>Demo</h2>
+
+<p>I deployed on heroku, so you can seee it at <a href="http://fluentd-server.herokuapp.com">http://fluentd-server.herokuapp.com</a>.</p>
+
+<h2>All the end</h2>
+
+<p>Fluentd server is yet under development. There are several remained Todo(s). Patches are welcome!</p>
+
+<ul>
+<li><p>Local file storage</p>
+
+<ul>
+<li>Saving and loading conf from localfiles rather than DB would be nice because it makes possible to manage conf with git</li>
+<li>Fluentd Server should cache them on memory, and refresh caches by detecting files are updated</li>
+</ul>
+</li>
+<li><p>Handling burst accesses</p>
+
+<ul>
+<li>Restarting the entire fluentd cluster burstly accesses to Fluentd Server, so it would get slow.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -735,6 +859,10 @@ Here, we set <code>tag query_name</code> so that the tag of retrieved messages t
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/12/fluentd-config-distribution-server/">Fluentd Config Distribution Server</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/05/07/norikra-vs-influxdb/">Norikra vs. InfluxDB</a>

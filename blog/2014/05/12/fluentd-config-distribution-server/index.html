@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fluentd Config Distribution Server - sonots:io</title>
+  <meta name="author" content="Naotoshi Seo">
+
+  
+  <meta name="description" content="Today, I present &ldquo;Fluentd Server&rdquo;, a Fluentd config distribution server. What is Fluentd Server I heard some opinions as some people want &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sonots.github.io/blog/2014/05/12/fluentd-config-distribution-server">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="sonots:io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">sonots:io</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sonots.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Fluentd Config Distribution Server</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T19:52:23+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Today, I present &ldquo;<a href="https://github.com/sonots/fluentd-server">Fluentd Server</a>&rdquo;, a Fluentd config distribution server.</p>
+
+<h2>What is Fluentd Server</h2>
+
+<p>I heard some opinions as some people want something like chef-server for Fluentd, so I created the fluentd-server.</p>
+
+<p>With Fluentd Server, you can manage fluentd configuration files centrally with erb.</p>
+
+<p>For example, you may create a config post whose name is worker as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nt">&lt;source&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> forward
+</span><span class='line'>  <span class="nb">port</span> &lt;%= port %&gt;
+</span><span class='line'><span class="nt">&lt;/source&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;match</span> <span class="s">**</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> stdout
+</span><span class='line'><span class="nt">&lt;/match&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you can download the config via an API whose uri is like <code>/api/worker?port=24224</code> where its query parameters are replaced with variables in the erb. The downloaded contents should become as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nt">&lt;source&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> forward
+</span><span class='line'>  <span class="nb">port</span> <span class="m">24224</span>
+</span><span class='line'><span class="nt">&lt;/source&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;match</span> <span class="s">**</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nb">type</span> stdout
+</span><span class='line'><span class="nt">&lt;/match&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>How to Use from Fluentd</h2>
+
+<p>The include directive of fluentd config supports http, so write just one line on your fluentd.conf as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="c"># /etc/fluentd.conf</span>
+</span><span class='line'><span class="nb">include</span> http://fqdn.to.fluentd-server/api/:name?port=24224
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where :name is the name of your config post, so that it will download the real configuration from the Fluentd Server.</p>
+
+<p>You can see the specification detail of API at <a href="https://github.com/sonots/fluentd-server/blob/master/API.md">API.md</a>.</p>
+
+<h2>Demo</h2>
+
+<p>I deployed on heroku, so you can seee it at <a href="http://fluentd-server.herokuapp.com">http://fluentd-server.herokuapp.com</a>.</p>
+
+<h2>All the end</h2>
+
+<p>Fluentd server is yet under development. There are several remained Todo(s). Patches are welcome!</p>
+
+<ul>
+<li><p>Local file storage</p>
+
+<ul>
+<li>Saving and loading conf from localfiles rather than DB would be nice because it makes possible to manage conf with git</li>
+<li>Fluentd Server should cache them on memory, and refresh caches by detecting files are updated</li>
+</ul>
+</li>
+<li><p>Handling burst accesses</p>
+
+<ul>
+<li>Restarting the entire fluentd cluster burstly accesses to Fluentd Server, so it would get slow.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Naotoshi Seo</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T19:52:23+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sonots.github.io/blog/2014/05/12/fluentd-config-distribution-server/" data-via="" data-counturl="http://sonots.github.io/blog/2014/05/12/fluentd-config-distribution-server/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/05/07/norikra-vs-influxdb/" title="Previous Post: Norikra vs. InfluxDB">&laquo; Norikra vs. InfluxDB</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/12/fluentd-config-distribution-server/">Fluentd Config Distribution Server</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/07/norikra-vs-influxdb/">Norikra vs. InfluxDB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/how-to-use-norikra-to-count-http-status/">How to Use Norikra to Count HTTP Status With Fluentd</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Naotoshi Seo -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

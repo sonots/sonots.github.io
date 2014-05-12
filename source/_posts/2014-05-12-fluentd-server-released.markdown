@@ -10,7 +10,7 @@ categories:
 
 ## What is Fluentd Server
 
-I heard some opinions as some people want something like chef-server for Fluentd, so I created the fluentd-server. 
+I heard opinions as some users of Fluentd want something like chef-server for Fluentd, so I created the fluentd-server. 
 
 With Fluentd Server, you can manage fluentd configuration files centrally with erb.
 
@@ -40,7 +40,7 @@ Then you can download the config via an API whose uri is like `/api/worker?port=
 </match>
 ```
 
-## How to Use from Fluentd
+## How To Use From Fluentd
 
 The include directive of fluentd config supports http, so write just one line on your fluentd.conf as:
 
@@ -55,7 +55,7 @@ You can see the specification detail of API at [API.md](https://github.com/sonot
 
 ## Demo
 
-I deployed on heroku, so you can seee it at [http://fluentd-server.herokuapp.com](http://fluentd-server.herokuapp.com).
+I deployed on heroku, so you can see the demo at [http://fluentd-server.herokuapp.com](http://fluentd-server.herokuapp.com).
 
 ## All the end
 

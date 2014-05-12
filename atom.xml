@@ -4,7 +4,7 @@
   <title><![CDATA[sonots:io]]></title>
   <link href="http://sonots.github.io/atom.xml" rel="self"/>
   <link href="http://sonots.github.io/"/>
-  <updated>2014-05-12T20:05:55+09:00</updated>
+  <updated>2014-05-12T20:11:09+09:00</updated>
   <id>http://sonots.github.io/</id>
   <author>
     <name><![CDATA[Naotoshi Seo]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Fluentd Config Distribution Server]]></title>
-    <link href="http://sonots.github.io/blog/2014/05/12/fluentd-config-distribution-server/"/>
+    <title type="html"><![CDATA[Fluentd-server Released!]]></title>
+    <link href="http://sonots.github.io/blog/2014/05/12/fluentd-server-released/"/>
     <updated>2014-05-12T19:52:23+09:00</updated>
-    <id>http://sonots.github.io/blog/2014/05/12/fluentd-config-distribution-server</id>
-    <content type="html"><![CDATA[<p>Today, I present &ldquo;<a href="https://github.com/sonots/fluentd-server">Fluentd Server</a>&rdquo;, a Fluentd config distribution server.</p>
+    <id>http://sonots.github.io/blog/2014/05/12/fluentd-server-released</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/sonots/fluentd-server">fluentd-server</a>, a Fluentd config distribution server, is released!</p>
 
 <h2>What is Fluentd Server</h2>
 
@@ -89,24 +89,7 @@
 
 <h2>All the end</h2>
 
-<p>Fluentd server is yet under development. There are several remained Todo(s). Patches are welcome!</p>
-
-<ul>
-<li><p>Local file storage</p>
-
-<ul>
-<li>Saving and loading conf from localfiles rather than DB would be nice because it makes possible to manage conf with git</li>
-<li>Fluentd Server should cache them on memory, and refresh caches by detecting files are updated</li>
-</ul>
-</li>
-<li><p>Handling burst accesses</p>
-
-<ul>
-<li>Restarting the entire fluentd cluster burstly accesses to Fluentd Server, so it would get slow.</li>
-</ul>
-</li>
-</ul>
-
+<p>Fluentd server is yet under development. Patches are welcome!</p>
 ]]></content>
   </entry>
   

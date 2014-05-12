@@ -9,7 +9,7 @@
   <meta name="author" content="Naotoshi Seo">
 
   
-  <meta name="description" content="Today, I present &ldquo;Fluentd Server&rdquo;, a Fluentd config distribution server. What is Fluentd Server I heard some opinions as some people want &hellip;">
+  <meta name="description" content="fluentd-server, a Fluentd config distribution server, is released! What is Fluentd Server I heard some opinions as some people want something like &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +70,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/12/fluentd-config-distribution-server/">Fluentd Config Distribution Server</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/05/12/fluentd-server-released/">Fluentd-server Released!</a></h1>
     
     
       <p class="meta">
@@ -93,7 +93,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Today, I present &ldquo;<a href="https://github.com/sonots/fluentd-server">Fluentd Server</a>&rdquo;, a Fluentd config distribution server.</p>
+  <div class="entry-content"><p><a href="https://github.com/sonots/fluentd-server">fluentd-server</a>, a Fluentd config distribution server, is released!</p>
 
 <h2>What is Fluentd Server</h2>
 
@@ -164,24 +164,7 @@
 
 <h2>All the end</h2>
 
-<p>Fluentd server is yet under development. There are several remained Todo(s). Patches are welcome!</p>
-
-<ul>
-<li><p>Local file storage</p>
-
-<ul>
-<li>Saving and loading conf from localfiles rather than DB would be nice because it makes possible to manage conf with git</li>
-<li>Fluentd Server should cache them on memory, and refresh caches by detecting files are updated</li>
-</ul>
-</li>
-<li><p>Handling burst accesses</p>
-
-<ul>
-<li>Restarting the entire fluentd cluster burstly accesses to Fluentd Server, so it would get slow.</li>
-</ul>
-</li>
-</ul>
-
+<p>Fluentd server is yet under development. Patches are welcome!</p>
 </div>
   
   
@@ -861,7 +844,7 @@ Here, we set <code>tag query_name</code> so that the tag of retrieved messages t
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/05/12/fluentd-config-distribution-server/">Fluentd Config Distribution Server</a>
+        <a href="/blog/2014/05/12/fluentd-server-released/">Fluentd-server Released!</a>
       </li>
     
       <li class="post">

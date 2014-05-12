@@ -9,7 +9,7 @@
   <meta name="author" content="Naotoshi Seo">
 
   
-  <meta name="description" content="fluentd-server, a Fluentd config distribution server, is released! What is Fluentd Server I heard opinions as some users of Fluentd want something &hellip;">
+  <meta name="description" content="Fluentd Server, a Fluentd config distribution server, was released! What is Fluentd Server I heard as some users of Fluentd want something like chef- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,15 +90,15 @@
   </header>
 
 
-<div class="entry-content"><p><a href="https://github.com/sonots/fluentd-server">fluentd-server</a>, a Fluentd config distribution server, is released!</p>
+<div class="entry-content"><p><a href="https://github.com/sonots/fluentd-server">Fluentd Server</a>, a Fluentd config distribution server, was released!</p>
 
 <h2>What is Fluentd Server</h2>
 
-<p>I heard opinions as some users of Fluentd want something like chef-server for Fluentd, so I created the fluentd-server.</p>
+<p>I heard as some users of Fluentd want something like chef-server for Fluentd, so I created the fluentd-server.</p>
 
 <p>With Fluentd Server, you can manage fluentd configuration files centrally with erb.</p>
 
-<p>For example, you may create a config post whose name is worker as:</p>
+<p>For example, you may create a config whose name is <code>worker</code> as:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -142,7 +142,7 @@
 
 <h2>How To Use From Fluentd</h2>
 
-<p>The include directive of fluentd config supports http, so write just one line on your fluentd.conf as:</p>
+<p>The <code>include</code> directive of fluentd config supports <code>http</code>, so write just one line on your fluentd.conf as:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -151,13 +151,13 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>where :name is the name of your config post, so that it will download the real configuration from the Fluentd Server.</p>
+<p>where :name is the name of your config post. Fluentd downloads the configuration from the Fluentd Server.</p>
 
 <p>You can see the specification detail of API at <a href="https://github.com/sonots/fluentd-server/blob/master/API.md">API.md</a>.</p>
 
 <h2>Demo</h2>
 
-<p>I deployed on heroku, so you can see the demo at <a href="http://fluentd-server.herokuapp.com">http://fluentd-server.herokuapp.com</a>.</p>
+<p>I deployed it on heroku, so you can see the demo at <a href="http://fluentd-server.herokuapp.com">http://fluentd-server.herokuapp.com</a>.</p>
 
 <h2>All the end</h2>
 

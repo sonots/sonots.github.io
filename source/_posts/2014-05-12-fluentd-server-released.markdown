@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Fluentd config distribution server"
+title: "fluentd-server released!"
 date: 2014-05-12 19:52:23 +0900
 comments: true
 categories: 
 ---
 
-Today, I present "[Fluentd Server](https://github.com/sonots/fluentd-server)", a Fluentd config distribution server. 
+[fluentd-server](https://github.com/sonots/fluentd-server), a Fluentd config distribution server, is released!
 
 ## What is Fluentd Server
 
@@ -59,14 +59,5 @@ I deployed on heroku, so you can seee it at [http://fluentd-server.herokuapp.com
 
 ## All the end
 
-Fluentd server is yet under development. There are several remained Todo(s). Patches are welcome!
-
-* Local file storage
-
-  * Saving and loading conf from localfiles rather than DB would be nice because it makes possible to manage conf with git
-  * Fluentd Server should cache them on memory, and refresh caches by detecting files are updated
-
-* Handling burst accesses
- 
-  * Restarting the entire fluentd cluster burstly accesses to Fluentd Server, so it would get slow.
+Fluentd server is yet under development. Patches are welcome!
 
